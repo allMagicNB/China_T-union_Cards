@@ -24,7 +24,7 @@ jobs:
           curl -o 'Cards.json' -H 'Authorization: Bearer ${{ secrets.WECHAT_ACESS_TOKEN }}' -H 'Content-Type: application/json' 'https://mp.t-union.com/api/selectCards?pageSize=999'
 
       - name: Push JSON
-        if: ${{ hashFiles('Cards.json') == env.original_json_hash }}
+        if: ${{ hashFiles('Cards.json') != env.original_json_hash }}
         run: |
           git commit -m "GitHub Actions ${{ github.run.attempt }}"
           git push
