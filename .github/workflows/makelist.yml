@@ -28,7 +28,7 @@ jobs:
         run: Write-Output equal_json_hash=$($Original_JSON_Hash -eq $JSON_Hash) >> ${{ github.env }}
 
       - name: Push JSON
-        if: ${{ env.equal_json_hash == false }}
+        if: ${{ env.equal_json_hash == False }}
         run: |
           git commit -m "GitHub Actions ${{ github.run.attempt }}"
           git push
