@@ -26,5 +26,8 @@ jobs:
       - name: Push JSON
         if: ${{ hashFiles('Cards.json') != env.original_json_hash }}
         run: |
-          git commit -m "GitHub Actions ${{ github.run.attempt }}"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "GitHub Actions ${{ github.run_attempt }}"
           git push
