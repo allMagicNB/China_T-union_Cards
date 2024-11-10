@@ -14,7 +14,7 @@ jobs:
       - name: Get Original JSON Hash
         run: |
           if (Test-Path Cards.json) {
-              original_json_hash=(Get-FileHash Cards.json -Algorithm SHA1).Hash
+              $original_json_hash = (Get-FileHash Cards.json -Algorithm SHA1).Hash
               Write-Output original_json_hash=${original_json_hash} >> ${{ github.env }}
           }
 
