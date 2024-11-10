@@ -14,13 +14,14 @@ jobs:
       - name: Get Original JSON Hash
         run: |
           if (Test-Path Cards.json) {
-              $original_json_hash = (Get-FileHash Cards.json -Algorithm SHA1).Hash
+              $original_json_hash = (Get-FileHash Cards.json).Hash
               Write-Output original_json_hash=${original_json_hash} >> ${{ github.env }}
           }
 
       - name: Get JSON
         run: |
-          curl -o 'Cards.json' -H 'Authorization: Bearer ${{ secrets.WECHAT_ACESS_TOKEN }}' -H 'Content-Type: application/json' 'https://mp.t-union.com/api/selectCards?pageSize=999'
+          $Token = ((curl https://mp.t-union.com/api//bonc/inPursuitOfTreasure).Content | ConvertFrom-Json).howdoudo
+          curl -o 'Cards.json' -H 'Authorization: Bearer ${Token}' -H 'Content-Type: application/json' 'https://mp.t-union.com/api/selectCards?pageSize=999'
 
       - name: Push JSON
         if: ${{ hashFiles('Cards.json') != env.original_json_hash }}
