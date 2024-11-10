@@ -20,7 +20,7 @@ jobs:
 
       - name: Get JSON
         run: |
-          $Token = ((curl https://mp.t-union.com/api//bonc/inPursuitOfTreasure).Content | ConvertFrom-Json).howdoudo
+          $Token = ((curl https://mp.t-union.com/api//bonc/inPursuitOfTreasure) | ConvertFrom-Json).howdoudo
           curl -o 'Cards.json' -H 'Authorization: Bearer ${Token}' -H 'Content-Type: application/json' 'https://mp.t-union.com/api/selectCards?pageSize=999'
 
       - name: Push JSON
