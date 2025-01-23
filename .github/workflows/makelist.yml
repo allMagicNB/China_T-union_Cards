@@ -11,13 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get Original JSON Hash
-        run: |
-          if (Test-Path Cards.json) {
-              $original_json_hash = (Get-FileHash Cards.json).Hash
-              Write-Output original_json_hash=${original_json_hash} >> ${{ github.env }}
-          }
-
       - name: Get JSON
         run: |
           $token = ((curl "https://mp.t-union.com/api//bonc/inPursuitOfTreasure") | ConvertFrom-Json).howdoudo
