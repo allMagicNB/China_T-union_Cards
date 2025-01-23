@@ -17,7 +17,6 @@ jobs:
           curl -o "Cards.json" -H "Authorization: Bearer ${token}" "https://mp.t-union.com/api/selectCards?pageSize=999"
 
       - name: Push JSON
-        if: ${{ hashFiles('Cards.json') != env.original_json_hash }}
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
